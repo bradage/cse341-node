@@ -19,7 +19,11 @@ router.get('/', (req, res, next) => {
     res.render('shop', {
         prods: products,
         docTitle: 'Shop',
-        path: 'shop'
+        path: 'shop',
+        hasProduct: products.length > 0, //used with handlebars because it only does true / false arguements
+        prod: true,
+        productCss: true,
+        page: 'shop'
     });
 });
 

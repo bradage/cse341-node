@@ -2,10 +2,21 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+/*
+
+    needed only if using handle bars
+
+*/
+// const expressHbs = require('express-handlebars'); 
+// app.engine('hbs', expressHbs({
+//     layoutsDir: 'views/layouts/',
+//     defaultLayout: 'main-layout'
+// }));
 
 const app = express();
 
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
+// app.set('view engine', 'pug');
 app.set('views', 'views'); //where to find the templates (views)
 
 // const mainRoutes = require('./routes/index');
