@@ -11,7 +11,7 @@ const products = [];
 router.get('/add-product', (req, res, next) => {
     // console.log('In another middleware!');
     //res.sendFile(path.join(rootDir, 'views', 'add-product.html'))
-    res.render('add-product', {
+    res.render('admin/add-product', {
         docTitle: 'Add Product',
         path: '/admin/add-product',
         productCss: false,
