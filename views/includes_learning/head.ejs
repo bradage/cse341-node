@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= docTitle %></title>
     <link rel="stylesheet" href="/css/main.css">
-    <% if (page == 'shop') { %>
+    <% if (productCSS) { %>
     <link rel="stylesheet" href="/css/product.css">
-    <% } else if (page == 'add-product'){ %>
+    <% } %>
+    <% if (formsCSS) { %>
     <link rel="stylesheet" href="/css/forms.css">
     <% } %>
 </head>
