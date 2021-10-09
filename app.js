@@ -1,11 +1,13 @@
+const MONGODB_URL = 'mongodb://rw:GoeQf8jnWJm9@cluster0-shard-00-00.aomqm.mongodb.net:27017,cluster0-shard-00-01.aomqm.mongodb.net:27017,cluster0-shard-00-02.aomqm.mongodb.net:27017/shop?ssl=true&replicaSet=atlas-3bi6e7-shard-0&authSource=admin&retryWrites=true&w=majority';
+
 const PORT = process.env.PORT || 5000;
 const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database').mongoConnect;
 const User = require('./models/user');
 
 const app = express();
@@ -35,9 +37,17 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+mongoose
+  .connect(
+    'mongodb://rw:GoeQf8jnWJm9@cluster0-shard-00-00.aomqm.mongodb.net:27017,cluster0-shard-00-01.aomqm.mongodb.net:27017,cluster0-shard-00-02.aomqm.mongodb.net:27017/shop?ssl=true&replicaSet=atlas-3bi6e7-shard-0&authSource=admin&retryWrites=true&w=majority'
+    // MONGODB_URL, options
+  )
+  .then(result => {
+    app.listen(PORT);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 // const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 // ...
@@ -56,16 +66,3 @@ mongoConnect(() => {
 // };
 
 // const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://<username>:<username>@cse341cluster-3dwlw.mongodb.net/test?retryWrites=true&w=majority";
-
-
-// mongoose
-//   .connect(
-//     MONGODB_URL, options
-//   )
-//   .then(result => {
-//     ... // This should be your user handling code implement following the course videos
-//     app.listen(PORT);
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   });
