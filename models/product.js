@@ -9,7 +9,7 @@ const productSchema = new Schema({
   },
   price: {
     type: Number,
-    require: true
+    required: true
   },
   description: {
     type: String,
@@ -18,14 +18,18 @@ const productSchema = new Schema({
   imageUrl: {
     type: String,
     required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 
 module.exports = mongoose.model('Product', productSchema);
 
-
-
 // const mongodb = require('mongodb');
+// const getDb = require('../util/database').getDb;
 
 // class Product {
 //   constructor(title, price, description, imageUrl, id, userId) {
@@ -44,11 +48,7 @@ module.exports = mongoose.model('Product', productSchema);
 //       // Update the product
 //       dbOp = db
 //         .collection('products')
-//         .updateOne({
-//           _id: this._id
-//         }, {
-//           $set: this
-//         });
+//         .updateOne({ _id: this._id }, { $set: this });
 //     } else {
 //       dbOp = db.collection('products').insertOne(this);
 //     }
@@ -80,9 +80,7 @@ module.exports = mongoose.model('Product', productSchema);
 //     const db = getDb();
 //     return db
 //       .collection('products')
-//       .find({
-//         _id: new mongodb.ObjectId(prodId)
-//       })
+//       .find({ _id: new mongodb.ObjectId(prodId) })
 //       .next()
 //       .then(product => {
 //         console.log(product);
@@ -97,9 +95,7 @@ module.exports = mongoose.model('Product', productSchema);
 //     const db = getDb();
 //     return db
 //       .collection('products')
-//       .deleteOne({
-//         _id: new mongodb.ObjectId(prodId)
-//       })
+//       .deleteOne({ _id: new mongodb.ObjectId(prodId) })
 //       .then(result => {
 //         console.log('Deleted');
 //       })
