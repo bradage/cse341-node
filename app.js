@@ -11,7 +11,7 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions));
+
 
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://rw:GoeQf8jnWJm9@cluster0-shard-00-00.aomqm.mongodb.net:27017,cluster0-shard-00-01.aomqm.mongodb.net:27017,cluster0-shard-00-02.aomqm.mongodb.net:27017/shop?ssl=true&replicaSet=atlas-3bi6e7-shard-0&authSource=admin&retryWrites=true&w=majority';
 
@@ -21,8 +21,8 @@ const PORT = process.env.PORT || 3000;
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
+  // useCreateIndex: true,
+  // useFindAndModify: false,
   family: 4
 };
 
@@ -57,6 +57,8 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+app.use(cors(corsOptions));
+
 mongoose
   .connect(
     MONGODB_URL, options
@@ -74,7 +76,7 @@ mongoose
         user.save();
       }
     });
-    app.listen(PORT, () => conosle.log(`Listening on localhost:${PORT}`));
+    app.listen(PORT, () => console.log(`Listening on localhost:${PORT}`));
   })
   .catch(err => {
     console.log(err);
