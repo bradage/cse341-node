@@ -98,18 +98,18 @@ mongoose
     MONGODB_URL, options
   )
   .then(result => {
-    User.findOne().then(user => {
-      if (!user) {
-        const user = new User({
-          name: 'Bradage',
-          email: 'bradage@fake.com',
-          cart: {
-            items: []
-          }
-        });
-        user.save();
-      }
-    });
+    // User.findOne().then(user => {
+    //   if (!user) {
+    //     const user = new User({
+    //       name: 'Bradage',
+    //       email: 'bradage@fake.com',
+    //       cart: {
+    //         items: []
+    //       }
+    //     });
+    //     user.save();
+    //   }
+    // });
     app.listen(PORT, () => console.log(`Listening on localhost:${PORT}`));
   })
   .catch(err => {
