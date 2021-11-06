@@ -26,7 +26,6 @@ router.post(
             min: 3
         })
         .trim(),
-        body('imageUrl').isURL(),
         body('price').isFloat(),
         body('description')
         .isLength({
@@ -50,7 +49,6 @@ router.post(
             min: 3
         })
         .trim(),
-        body('imageUrl').isURL(),
         body('price').isFloat(),
         body('description')
         .isLength({
